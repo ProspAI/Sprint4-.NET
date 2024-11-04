@@ -1,7 +1,10 @@
+Aqui está o README completo atualizado com as seções sobre testes, práticas de Clean Code e funcionalidades de IA generativa:
+
+---
+
 # ProspAI - Versão .NET
 
 **ProspAI** é uma aplicação de inteligência artificial desenvolvida para otimizar estratégias de vendas através da análise de dados de clientes. A aplicação oferece uma API RESTful robusta e uma interface MVC baseada em ASP.NET Core, facilitando a navegação e a utilização dos recursos disponíveis.
-
 
 ## Índice
 
@@ -10,12 +13,15 @@
 3. [Recursos Principais](#recursos-principais)
 4. [Tecnologias Utilizadas](#tecnologias-utilizadas)
 5. [Padrões de Projeto Implementados](#padrões-de-projeto-implementados)
-6. [Endpoints da API](#endpoints-da-api)
-7. [Funcionalidades da Interface MVC](#funcionalidades-da-interface-mvc)
-8. [Instalação e Configuração](#instalação-e-configuração)
-9. [Como Contribuir](#como-contribuir)
-10. [Licença](#licença)
-11. [Autores](#autores)
+6. [Testes Implementados](#testes-implementados)
+7. [Práticas de Clean Code e SOLID](#práticas-de-clean-code-e-solid)
+8. [Funcionalidades de IA Generativa](#funcionalidades-de-ia-generativa)
+9. [Endpoints da API](#endpoints-da-api)
+10. [Documentação Swagger](#documentação-swagger)
+11. [Instalação e Configuração](#instalação-e-configuração)
+12. [Como Contribuir](#como-contribuir)
+13. [Licença](#licença)
+14. [Autores](#autores)
 
 ## Visão Geral do Projeto
 
@@ -55,6 +61,60 @@ A aplicação utiliza os padrões de Repositório e Serviço para manter uma sep
 - **Padrão de Serviço**: Separa a lógica de negócios dos controladores e repositórios.
 - **Injeção de Dependência**: Implementada para gerenciar dependências e promover testabilidade.
 
+## Testes Implementados
+
+O projeto utiliza o framework **xUnit** para implementação de testes unitários e **Moq** para mockar dependências, permitindo a verificação do comportamento isolado dos serviços.
+
+### Tipos de Testes
+
+1. **Testes Unitários**:
+   - Verificam a lógica de cada método individualmente, garantindo que cada operação funcione conforme esperado.
+   - Exemplos: `FuncionarioServiceTests`, `DesempenhoServiceTests`, e `ReclamacaoServiceTests` incluem testes para métodos como `ObterTodosAsync`, `ObterPorIdAsync`, `AdicionarAsync`, `AtualizarAsync`, e `ExcluirAsync`.
+
+2. **Testes de Integração**:
+   - Podem ser incluídos para testar a interação entre serviços e o banco de dados, garantindo que os dados são manipulados corretamente.
+   - Recomenda-se a implementação de testes de integração para validar as consultas e operações de CRUD diretamente no contexto do banco de dados, usando o `ApplicationDbContext`.
+
+3. **Testes de Sistema**:
+   - Simulam fluxos completos de utilização da API, desde a criação até a exclusão de registros.
+   - Recomendamos o uso de ferramentas como Postman ou Cypress para criar uma suíte de testes de sistema automatizados.
+
+## Práticas de Clean Code e SOLID
+
+O código do projeto foi desenvolvido aplicando **práticas de Clean Code** e **princípios SOLID** para melhorar a legibilidade, manutenibilidade e testabilidade.
+
+### Clean Code
+- **Nomenclatura Clara**: Nomes de variáveis e métodos são intuitivos e descritivos, facilitando o entendimento do código.
+- **Separação de Responsabilidades**: A lógica de negócio foi segregada em serviços e repositórios, enquanto os controladores são responsáveis apenas por lidar com as requisições HTTP.
+- **Comentários e Documentação**: Cada classe e método principal possui comentários e documentação XML para facilitar a compreensão e manutenção.
+
+### Princípios SOLID
+
+1. **Single Responsibility Principle (SRP)**: 
+   - Cada classe tem uma única responsabilidade. Por exemplo, `FuncionarioService` é responsável apenas pela lógica de negócios de funcionários, enquanto `FuncionarioRepository` lida com o acesso aos dados.
+
+2. **Open/Closed Principle (OCP)**: 
+   - As classes foram projetadas para serem estendidas sem modificações. Por exemplo, os serviços podem ser expandidos com novas funcionalidades sem alterar o código existente.
+
+3. **Liskov Substitution Principle (LSP)**:
+   - Todas as interfaces e classes base podem ser substituídas por suas implementações sem quebrar o código. Os serviços e repositórios implementam interfaces que seguem esse princípio.
+
+4. **Interface Segregation Principle (ISP)**:
+   - Interfaces específicas para cada entidade (`IRepository` e `IService`) asseguram que cada serviço ou repositório usa apenas os métodos necessários.
+
+5. **Dependency Inversion Principle (DIP)**:
+   - As dependências são injetadas nas classes, facilitando a troca de implementações e a realização de testes, com todos os serviços e repositórios sendo injetados via construtor.
+
+## Funcionalidades de IA Generativa
+
+O ProspAI integra um modelo de Machine Learning desenvolvido com **ML.NET** para fornecer insights baseados nos dados de desempenho dos funcionários.
+
+### Modelos Implementados
+
+- **Previsão de Reclamações Solucionadas**:
+   - Utilizando um modelo de regressão, a aplicação prediz o número de reclamações que um funcionário pode resolver com base em seu histórico de desempenho, ajudando a identificar colaboradores que precisam de suporte adicional para melhorar sua performance.
+
+
 ## Endpoints da API
 
 Abaixo está a lista de principais endpoints da API RESTful disponíveis:
@@ -80,17 +140,19 @@ Abaixo está a lista de principais endpoints da API RESTful disponíveis:
 - `PUT /api/desempenho/{id}` - Atualiza um registro de desempenho existente.
 - `DELETE /api/desempenho/{id}` - Deleta um registro de desempenho.
 
-### Documentação Swagger
+## Documentação Swagger
+
 Para testar e visualizar a documentação dos endpoints da API, acesse:
 
 - **Ambiente Local:** [http://localhost:5000/swagger](http://localhost:5000/swagger)
-
 
 ## Instalação e Configuração
 
 1. **Clone o Repositório:**
    ```bash
-   git clone https://github.com/seu-usuario/prospai-dotnet.git
+   git clone https://github.com/seu-usuario/prospai-dotnet
+
+.git
    cd prospai-dotnet
    ```
 
@@ -140,4 +202,5 @@ Este projeto foi desenvolvido por:
 ---
 
 Sinta-se à vontade para contribuir com melhorias e novas funcionalidades para o ProspAI!
-# Sprint4-.NET
+
+--- 
