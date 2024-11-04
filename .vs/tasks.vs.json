@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-ProspAI_Sprint3",
+      "appliesTo": "ProspAI_Sprint3/",
+      "type": "launch"
+    }
+  ]
+}
